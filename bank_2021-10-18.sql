@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.7.34)
 # Database: bank
-# Generation Time: 2021-10-18 10:08:22 +0000
+# Generation Time: 2021-10-18 12:52:49 +0000
 # ************************************************************
 
 
@@ -41,10 +41,11 @@ LOCK TABLES `cards` WRITE;
 
 INSERT INTO `cards` (`id`, `card_number`, `card_holder`, `expiration_month`, `expiration_year`, `cvv`, `account_balance`)
 VALUES
-	(68,'5541180537474693','Matej brodziansky',10,2026,853,566),
+	(68,'5541180537474693','Matej brodziansky',10,2026,853,866),
 	(69,'1067851490718501','Jaroslav Ginič',10,2026,996,879),
 	(71,'4252582974293764','Jozef zliechovec',10,2026,542,1568),
-	(72,'5272510902033694','Michal sobocký',10,2026,444,2000);
+	(72,'5272510902033694','Michal sobocký',10,2026,444,2000),
+	(73,'5368546950972026','Peter Vozrár',10,2026,220,1700);
 
 /*!40000 ALTER TABLE `cards` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -82,11 +83,11 @@ DROP TABLE IF EXISTS `log`;
 CREATE TABLE `log` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(50) DEFAULT NULL,
-  `log_type` varchar(20) DEFAULT NULL,
-  `action` text,
-  `created_at` varchar(100) DEFAULT NULL,
+  `log_type` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
+  `action` text CHARACTER SET utf8,
+  `created_at` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 LOCK TABLES `log` WRITE;
 /*!40000 ALTER TABLE `log` DISABLE KEYS */;
@@ -129,7 +130,14 @@ VALUES
 	(34,4,'auth','Succesfully logged in by 8239692619979688','2021-10-18 08:58:26'),
 	(35,4,'auth','Logged out 8239692619979688','2021-10-18 09:06:53'),
 	(36,4,'auth','Succesfully logged in by 8239692619979688','2021-10-18 09:07:06'),
-	(37,NULL,'transaction','Sended 432 € from 4252582974293764 to 5541180537474693','2021-10-18 09:51:44');
+	(37,NULL,'transaction','Sended 432 € from 4252582974293764 to 5541180537474693','2021-10-18 09:51:44'),
+	(38,4,'auth','Logged out 8239692619979688','2021-10-18 10:21:30'),
+	(39,0,'auth','Created new user with unique number 2432641135561743','2021-10-18 10:24:12'),
+	(40,7,'auth','Succesfully logged in by 2432641135561743','2021-10-18 10:25:30'),
+	(41,NULL,'card','Succesfuly created card 5368546950972026','2021-10-18 10:26:10'),
+	(42,NULL,'card','Trying to create card 5368546950972026 but, this card already exists.','2021-10-18 10:26:11'),
+	(43,NULL,'transaction','Sended 134 € from 5368546950972026 to 5541180537474693','2021-10-18 10:26:37'),
+	(44,NULL,'transaction','Sended 166 € from 5368546950972026 to 5541180537474693','2021-10-18 10:32:44');
 
 /*!40000 ALTER TABLE `log` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -191,7 +199,8 @@ VALUES
 	(1,'127.0.0.1','administrator','$2y$10$f3tVTVWZ5Muhw5dyZfrj1enzKip0vgmZvpnjXNW6jEcqbeWAdVVRq','admin@admin.com','2968994484774694',NULL,'',NULL,NULL,NULL,NULL,NULL,1268889823,1634110892,1,'Admin','istrator','ADMIN','0'),
 	(2,'::1',NULL,'$2y$10$x2aejLAdaaL2RUHydRtn.OuBibxsD4744Mza86f6MoocmXQiSM23O','matejbrodziansky@gmail.com','2087832978789332',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1634494390,1634533398,1,'Matej','Brodziansky',NULL,'0944062718'),
 	(3,'::1',NULL,'$2y$10$QoK9LbZ7tbLAKi6evkVlvuK6QjcD/CeZE6W0F0CiWGTvJ98ClL78m','michal@email.com','1243112710682107',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1634543575,NULL,1,'Michal','Novek',NULL,'04920492'),
-	(4,'::1',NULL,'$2y$10$ChEgzQAM1xYe3Ub5/cNpiuq8AckxR9nGr5amlIME3ncnayXgGqDZK','ondrej@email.com','8239692619979688',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1634547487,1634548026,1,'Ondrej','Valigura',NULL,'435353');
+	(4,'::1',NULL,'$2y$10$ChEgzQAM1xYe3Ub5/cNpiuq8AckxR9nGr5amlIME3ncnayXgGqDZK','ondrej@email.com','8239692619979688',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1634547487,1634548026,1,'Ondrej','Valigura',NULL,'435353'),
+	(7,'::1',NULL,'$2y$10$PPxCIY5cNeFf6L6lYp1iPOOUHY0LMej2zlQWzGV6JlKlssmzo6Rxq','vozar@gmail.com','2432641135561743',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1634552652,1634552730,1,'peter','Vozár',NULL,'0944062718');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -223,7 +232,8 @@ VALUES
 	(2,1,2),
 	(12,2,2),
 	(13,3,2),
-	(14,4,2);
+	(14,4,2),
+	(15,7,2);
 
 /*!40000 ALTER TABLE `users_groups` ENABLE KEYS */;
 UNLOCK TABLES;

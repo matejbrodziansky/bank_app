@@ -1,12 +1,6 @@
 <?php
 
-/**
- * @version: 1.0.0
- * @author: Michal Sejc https://webstranky-sejc.sk/
- * @copyright: Copyright (c) 2018-2019 Michal Sejc. All rights reserved.
- * @website: https://webstranky-sejc.sk/
- * @email michal.sejc@gmail.com
- */
+
 defined('BASEPATH') or exit('No direct script access allowed');
 class Bank_model extends CI_Model
 {

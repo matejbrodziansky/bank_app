@@ -54,3 +54,17 @@ function user_uniq_number()
 
 	return $query->row()->unique_number;
 }
+
+	/*
+	 * Cute date time
+	 *
+	 * @param str $string
+	 *
+	 * @return str
+	 */
+	function cuteDateTime($dateTime) {
+		if (empty($dateTime)) {
+			return '';
+		}
+		return date('d.m.Y H:i', strtotime($dateTime));
+	}

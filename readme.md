@@ -8,6 +8,7 @@ Keď sa do  metódy pridá ako druhý argument True tak  bude generovať aj pís
 Metóda na vytvorenie tokenu je v helpers/general_helper.php
 
 zmenený login pomocou unique number $config['identity']    = 'unique_number';   v thir_party/ion_aut/config/ion_auth.php
+pre prihlásenie si treba z DB z tabulky user  skopirovať unique_number.
 
 2. 
 Vytvorený view create_card.php 

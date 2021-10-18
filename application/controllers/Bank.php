@@ -3,6 +3,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Bank extends CI_Controller
 {
+	private $depositOrWithdraw;
+	private $withdraw_id;
+	private $deposit_id;
+	private $response;
+	private $amount;
+	private $cards;
+	private $post;
+	private $card;
+	private $id;
 
 	public function __construct()
 	{
@@ -134,9 +143,9 @@ class Bank extends CI_Controller
 			$withdraw_id = $this->depositOrWithdraw($post['id'], $post['amount'], 'withdraw');
 
 			if (isset($withdraw_id) && !empty($withdraw_id)) {
-				$this->depositOrWithdraw($id, $post['amount'], 'deposit');
+				$deposit_id = $this->depositOrWithdraw($id, $post['amount'], 'deposit');
 
-				if (isset($withdraw_id) && !empty($withdraw_id)) {
+				if (isset($deposit_id) && !empty($deposit_id)) {
 					$response['status'] = 1;
 					$response['message'] = 'Success';
 
@@ -188,10 +197,15 @@ class Bank extends CI_Controller
 
 	public function activityLog()
 	{
+		$all_logs = $this->log_model->get_all_log();
+
+		foreach ($all_logs as $key => $log) {
+			$all_logs[$key]['created_at'] = cuteDateTime($log['created_at']);
+		}
 
 		$data['count_logs'] = $this->log_model->get_count_log();
-		$data['all_logs'] = $this->log_model->get_all_log();
-		$data['encoded_all_logs'] = json_encode($this->log_model->get_all_log());
+		$data['all_logs'] = $all_logs;
+		$data['encoded_all_logs'] = json_encode($all_logs);
 
 		$this->load->view('_partials/header');
 		$this->load->view('activity_log', $data);

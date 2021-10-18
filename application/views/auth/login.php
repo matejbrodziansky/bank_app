@@ -40,8 +40,6 @@
                 </div>
                 <button type="submit" name="submit" value="login" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign in</button>
                 <div class="text-center d-flex justify-content-between mt-4">
-                  <p>Snippet by <a href="https://bootstrapious.com/snippets" class="font-italic text-muted">
-                      <u>Boostrapious</u></a></p>
                 </div>
               </form>
             </div>

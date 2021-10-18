@@ -1,0 +1,77 @@
+.selected {
+    color: #fff !important;
+    background-color: gray;
+}
+
+.selected a {
+    color: #fff !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+.selected_log_box h4 {
+    color: blue;
+    margin: 0.5em 1em;
+}
+.selected_log_box p {
+    margin: 0 1em;
+}
+
+/* ----------------------------------------------------- */
+/* FLASH MESSAGE */
+/* ----------------------------------------------------- */
+.alert {
+    /* padding: 20px; */
+    margin-left: 2em;
+    margin-top: 2em;
+    color: white;
+    display: none;
+    position: fixed;
+    position: sticky;
+    top: 0;
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+.alert {
+    z-index: 4;
+}
+
+/* ----------------------------------------------------- */
+/* Loading icon */
+/* ----------------------------------------------------- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8) url("http://i.stack.imgur.com/FhHRx.gif") 50% 50% no-repeat;
+}
+
+body.loading .modal {
+    overflow: hidden;
+}
+
+body.loading .modal {
+    display: block;
+}
+
+
